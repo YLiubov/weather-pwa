@@ -1,0 +1,140 @@
+/* Базовые стили. Цвета зависят от темы (data-theme на body), стили компонентов лежат рядом с ними */
+:root {
+  --radius: 20px;
+  --font-serif: 'Noto Serif JP', Georgia, serif;
+  --font-sans: 'Zen Kaku Gothic New', system-ui, sans-serif;
+}
+
+/* Утро: Sky top #DBEBE7, middle #C9D9DA, иконки #406D96 */
+body[data-theme='morning'] {
+  --bg:
+    radial-gradient(ellipse 80% 40% at 100% 0%, rgba(255, 214, 160, 0.9), transparent 70%),
+    linear-gradient(180deg, #dbebe7 0%, #c9d9da 45%, #e8a9a6 100%);
+  --text: #2f3a56;
+  --muted: #6b7c8f;
+  --icon: #406d96;
+  --glass: rgba(255, 255, 255, 0.4);
+  --glass-strong: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.75);
+  --badge: linear-gradient(135deg, #fbe3bf 0%, #f6c9a0 100%);
+  --hill-1: rgba(64, 109, 150, 0.22);
+  --hill-2: rgba(226, 100, 105, 0.3);
+  --hill-3: rgba(200, 140, 150, 0.85);
+}
+
+/* День: Sky top #DBECEB, middle #ABD0DA, иконки #2F3A56 */
+body[data-theme='day'] {
+  --bg:
+    radial-gradient(ellipse 80% 40% at 100% 0%, rgba(250, 245, 190, 0.95), transparent 70%),
+    linear-gradient(180deg, #dbeceb 0%, #abd0da 50%, #6fa9c4 100%);
+  --text: #2f3a56;
+  --muted: #5d7488;
+  --icon: #2f3a56;
+  --glass: rgba(255, 255, 255, 0.35);
+  --glass-strong: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.75);
+  --badge: linear-gradient(135deg, #f8f6cf 0%, #e6efc8 100%);
+  --hill-1: rgba(255, 255, 255, 0.3);
+  --hill-2: rgba(64, 109, 150, 0.4);
+  --hill-3: rgba(47, 58, 86, 0.6);
+}
+
+/* Вечер: Sky top #DDC3C1, middle #9A7C91, иконки #DBEBEB */
+body[data-theme='evening'] {
+  --bg:
+    radial-gradient(ellipse 80% 40% at 100% 0%, rgba(255, 170, 130, 0.85), transparent 70%),
+    linear-gradient(180deg, #ddc3c1 0%, #9a7c91 50%, #4d5472 100%);
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, 0.78);
+  --icon: #dbebeb;
+  --glass: rgba(255, 255, 255, 0.16);
+  --glass-strong: rgba(255, 255, 255, 0.32);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --badge: linear-gradient(135deg, #f6b49f 0%, #e88f86 100%);
+  --hill-1: rgba(255, 255, 255, 0.15);
+  --hill-2: rgba(47, 58, 86, 0.4);
+  --hill-3: rgba(70, 70, 100, 1);
+}
+
+/* Ночь: Sky top #406D96, middle #2F3A56, иконки #ABD0DA */
+body[data-theme='night'] {
+  --bg:
+    radial-gradient(ellipse 80% 40% at 100% 0%, rgba(140, 190, 225, 0.55), transparent 70%),
+    linear-gradient(180deg, #406d96 0%, #2f3a56 50%, #1b2238 100%);
+  --text: #ffffff;
+  --muted: rgba(219, 235, 235, 0.7);
+  --icon: #abd0da;
+  --glass: rgba(47, 58, 86, 0.55);
+  --glass-strong: rgba(171, 208, 218, 0.22);
+  --glass-border: rgba(171, 208, 218, 0.35);
+  --badge: linear-gradient(135deg, rgba(120, 180, 220, 0.6) 0%, rgba(64, 109, 150, 0.6) 100%);
+  --hill-1: rgba(64, 109, 150, 0.55);
+  --hill-2: rgba(47, 58, 86, 0.85);
+  --hill-3: #232c45;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.5s;
+}
+
+#app {
+  max-width: 480px;
+  margin: 0 auto;
+  padding-bottom: 24px;
+}
+
+.message {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.message--error {
+  color: #c0392b;
+}
+
+.footer-note {
+  margin: 16px;
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+@media (min-width: 768px) {
+  #app {
+    max-width: 640px;
+  }
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.section-head h2 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.section-head h2::first-letter {
+  text-transform: uppercase;
+}
+
+.section-head span {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}

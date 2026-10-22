@@ -1,0 +1,68 @@
+.day-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 32px auto auto;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  background: var(--glass);
+  backdrop-filter: blur(22px);
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.day-card--active {
+  background: var(--glass-strong);
+  border-color: var(--glass-border);
+}
+
+.day-card__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.day-card__name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.day-card__name::first-letter {
+  text-transform: uppercase;
+}
+
+.day-card__label {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.day-card__extra {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.7rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.day-card__rain {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.day-card .ui-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.day-card__temps {
+  min-width: 56px;
+  text-align: right;
+  white-space: nowrap;
+}

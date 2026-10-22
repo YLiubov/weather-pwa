@@ -1,0 +1,87 @@
+.header {
+  position: relative;
+  padding: 24px 20px 100px;
+}
+
+.header__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.header__city {
+  font-weight: 500;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+}
+
+.header__pin {
+  width: 14px;
+  height: 14px;
+  margin-right: 6px;
+  vertical-align: -2px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.header__sub {
+  margin: 4px 0 0 20px;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+
+.header__badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 12px;
+  background: var(--badge);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(22px);
+  font-size: 0.75rem;
+}
+
+.header__badge small {
+  font-size: 0.6rem;
+  color: var(--muted);
+}
+
+.header__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.header .temperature--big {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 96px;
+  line-height: 0.88;
+}
+
+.header__label {
+  margin: 8px 0 0;
+  font-family: var(--font-serif);
+  color: var(--muted);
+}
+
+.header__hills {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 110px;
+}
+
+@media (min-width: 768px) {
+  .header .temperature--big {
+    font-size: 96px;
+  }
+}

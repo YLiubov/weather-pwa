@@ -1,0 +1,12 @@
+.temperature {
+  font-weight: 600;
+}
+
+.temperature--min {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.temperature--big {
+  font-size: 4rem;
+}

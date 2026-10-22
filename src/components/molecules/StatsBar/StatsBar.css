@@ -1,0 +1,28 @@
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: -28px 20px 16px;
+  position: relative;
+  padding: 10px 0;
+  border-radius: var(--radius);
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(22px);
+  text-align: center;
+}
+
+.stats-bar__item + .stats-bar__item {
+  border-left: 1px solid var(--glass-border);
+}
+
+.stats-bar__item span {
+  display: block;
+  font-size: 0.65rem;
+  font-family: var(--font-sans);
+  color: var(--muted);
+}
+
+.stats-bar__item strong {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+}

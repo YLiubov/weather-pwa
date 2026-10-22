@@ -1,0 +1,22 @@
+.weather-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  background-color: var(--icon);
+  -webkit-mask: var(--src) center / contain no-repeat;
+  mask: var(--src) center / contain no-repeat;
+}
+
+.weather-icon--sm {
+  width: 32px;
+  height: 32px;
+}
+
+.weather-icon--md {
+  width: 48px;
+  height: 48px;
+}
+
+.weather-icon--lg {
+  width: 90px;
+  height: 90px;
+}

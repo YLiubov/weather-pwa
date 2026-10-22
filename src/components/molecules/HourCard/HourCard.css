@@ -1,0 +1,47 @@
+.hour-card {
+  min-width: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  background: var(--glass);
+  backdrop-filter: blur(22px);
+}
+
+.hour-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hour-card__time {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.hour-card__temp {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+}
+
+.hour-card__rain {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.65rem;
+  white-space: nowrap;
+  color: var(--muted);
+}
+
+.hour-card .wind-info {
+  font-size: 0.65rem;
+  color: var(--muted);
+}
+
+.hour-card .ui-icon {
+  width: 18px;
+  height: 18px;
+}
