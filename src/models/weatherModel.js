@@ -1,29 +1,9 @@
 const BASE_URL = 'https://api.open-meteo.com/v1/forecast'
 
-// Если пользователь не разрешил геолокацию
-export const DEFAULT_LOCATION = { lat: 55.68, lon: 12.57 }
-
-// Спрашиваем у браузера, где пользователь. Если нельзя, берём København
-export function getLocation() {
-  return new Promise((resolve) => {
-    if (!('geolocation' in navigator)) return resolve(DEFAULT_LOCATION)
-
-    navigator.geolocation.getCurrentPosition(
-      (pos) => resolve({
-        lat: Number(pos.coords.latitude.toFixed(2)),
-        lon: Number(pos.coords.longitude.toFixed(2)),
-      }),
-      () => resolve(DEFAULT_LOCATION),
-      { timeout: 5000 } // если ответа нет 5 секунд, берём København
-    )
-  })
-}
-
-// wrap it in a Promise so that await can be used
-export async function fetchForecast(location) {
+function buildURL(lat, long) {
   const params = new URLSearchParams({
-    latitude: location.lat,
-    longitude: location.lon,
+    latitude: lat,
+    longitude: long,
     current: 'temperature_2m,apparent_temperature,relative_humidity_2m,is_day,weather_code,wind_speed_10m,wind_direction_10m,precipitation',
     daily: 'weather_code,precipitation_probability_max,temperature_2m_max,temperature_2m_min,wind_speed_10m_max,wind_direction_10m_dominant,precipitation_sum',
     hourly: 'precipitation_probability,temperature_2m,weather_code,wind_speed_10m,wind_direction_10m,precipitation,is_day',
@@ -31,9 +11,13 @@ export async function fetchForecast(location) {
     timezone: 'auto',
     forecast_days: 7,
   })
+  return `${BASE_URL}?${params}`
+}
 
-  const response = await fetch(`${BASE_URL}?${params}`)
-  if (!response.ok) throw new Error('API error')
+export async function getWeatherData(lat, long) {
+  const response = await fetch(buildURL(lat, long))
+
+  if (!response.ok) throw new Error(`Open-Meteo error: ${response.status}`)
   return response.json()
 }
 
@@ -98,9 +82,9 @@ export function toHours(data) {
   }))
 }
 // Название города по координатам. Если не вышло, просто «Din position»
-export async function getCityName(location) {
+export async function getCityName(lat, long) {
   try {
-    const url = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${location.lat}&longitude=${location.lon}&localityLanguage=da`
+    const url = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}&localityLanguage=da`
     const response = await fetch(url)
     if (!response.ok) throw new Error('geo error')
     const data = await response.json()

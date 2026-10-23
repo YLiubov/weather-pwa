@@ -1,7 +1,8 @@
 // Контроллер связывает Model и View: просит данные у модели, хранит выбранный день, отдаёт всё View.
 
 // Model: функции для получения и преобразования данных (без DOM)
-import { getLocation, getCityName, fetchForecast, toCurrent, toDays, toHours } from '../models/weatherModel.js'
+import { getPosition } from '../models/positionModel.js'
+import { getWeatherData, getCityName, toCurrent, toDays, toHours } from '../models/weatherModel.js'
 // View: функции, которые рисуют страницу и вешают клик (без загрузки данных)
 import { renderLoading, renderError, renderWeather, bindEvents } from '../views/weatherView.js'
 
@@ -36,7 +37,7 @@ function show() {
 }
 
 // Точка входа: её вызывает main.js. async, потому что внутри ждём (await) геолокацию и API
-export async function init() {
+export async function initWeather() {
   // пока данные грузятся, показываем «Henter vejret...»
   renderLoading()
 
@@ -59,8 +60,8 @@ export async function init() {
 
   // try/catch: если что-то пойдёт не так (нет сети, ошибка API), не ломаемся, а показываем сообщение
   try {
-    const location = await getLocation()          // 1. где пользователь (или København)
-    const [data, city] = await Promise.all([fetchForecast(location), getCityName(location)])    // 2. запрос к Open-Meteo, «сырые» данные
+    const { lat, long } = await getPosition()     // 1. где пользователь (или fallback Aalborg)
+    const [data, city] = await Promise.all([getWeatherData(lat, long), getCityName(lat, long)])    // 2. запрос к Open-Meteo, «сырые» данные
     state.city = city
     state.current = toCurrent(data)               // 3. превращаем в удобные объекты
     state.days = toDays(data)
@@ -68,6 +69,7 @@ export async function init() {
     state.selectedDate = state.days[0].date       // 4. по умолчанию выбран сегодняшний день
     show()                                        // 5. рисуем
   } catch (error) {
+    console.error('No data today:', error)
     renderError('Kunne ikke hente vejret. Prøv igen senere.')
   }
 }
